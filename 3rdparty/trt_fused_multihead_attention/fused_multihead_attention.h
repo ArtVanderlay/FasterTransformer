@@ -181,6 +181,23 @@ static const struct FusedMultiHeadAttentionKernelMetaInfoV1
     {DATA_TYPE_INT8, 384, 64, kSM_86, fused_multihead_attention_int8_384_64_kernel_sm80_cu_o,
         fused_multihead_attention_int8_384_64_kernel_sm80_cu_o_len, "fused_multihead_attention_int8_384_64_kernel_sm80",
         57344, 256},
+    
+    // AD10x
+    {DATA_TYPE_FP16, 64, 64, kSM_89, fused_multihead_attention_fp16_64_64_kernel_sm80_cu_o,
+        fused_multihead_attention_fp16_64_64_kernel_sm80_cu_o_len,
+        "fused_multihead_attention_v2_fp16_64_64_kernel_sm80", 32768, 128},
+    {DATA_TYPE_FP16, 96, 64, kSM_89, fused_multihead_attention_fp16_96_64_kernel_sm80_cu_o,
+        fused_multihead_attention_fp16_96_64_kernel_sm80_cu_o_len,
+        "fused_multihead_attention_v2_fp16_96_64_kernel_sm80", 49152, 128},
+    {DATA_TYPE_FP16, 128, 64, kSM_89, fused_multihead_attention_fp16_128_64_kernel_sm80_cu_o,
+        fused_multihead_attention_fp16_128_64_kernel_sm80_cu_o_len, "fused_multihead_attention_fp16_128_64_kernel_sm80",
+        49152, 128},
+    {DATA_TYPE_INT8, 128, 64, kSM_89, fused_multihead_attention_int8_128_64_kernel_sm80_cu_o,
+        fused_multihead_attention_int8_128_64_kernel_sm80_cu_o_len, "fused_multihead_attention_int8_128_64_kernel_sm80",
+        24576, 128},
+    {DATA_TYPE_INT8, 384, 64, kSM_89, fused_multihead_attention_int8_384_64_kernel_sm80_cu_o,
+        fused_multihead_attention_int8_384_64_kernel_sm80_cu_o_len, "fused_multihead_attention_int8_384_64_kernel_sm80",
+        57344, 256},
 
 #endif
 };

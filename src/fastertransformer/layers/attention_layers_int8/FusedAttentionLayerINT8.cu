@@ -631,7 +631,7 @@ FusedAttentionLayerINT8<T>::FusedAttentionLayerINT8(size_t           max_batch_s
     int8_mode_(int8_mode),
     sparse_(sparse)
 {
-    if ((sm_ == kSM_86 || sm_ == kSM_80 || sm_ == kSM_75 || sm_ == kSM_72)
+    if ((sm_ == kSM_89 || sm == kSM_86 || sm_ == kSM_80 || sm_ == kSM_75 || sm_ == kSM_72)
         && (size_per_head_ == 64 || size_per_head_ == 32)) {
         dispatcher_int8_.reset(new FusedMHARunnerInt8v2(head_num_, size_per_head_, sm_, q_scaling_));
     }
@@ -657,7 +657,7 @@ FusedAttentionLayerINT8<T>::FusedAttentionLayerINT8(FusedAttentionLayerINT8<T> c
     int8_mode_(attention_layer.int8_mode_),
     sparse_(attention_layer.sparse_)
 {
-    if ((sm_ == kSM_86 || sm_ == kSM_80 || sm_ == kSM_75 || sm_ == kSM_72)
+    if ((sm_ == kSM_89 || sm_ == kSM_86 || sm_ == kSM_80 || sm_ == kSM_75 || sm_ == kSM_72)
         && (size_per_head_ == 64 || size_per_head_ == 32)) {
         dispatcher_int8_.reset(new FusedMHARunnerInt8v2(head_num_, size_per_head_, sm_, q_scaling_));
     }

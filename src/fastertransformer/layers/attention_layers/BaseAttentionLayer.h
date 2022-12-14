@@ -56,11 +56,11 @@ AttentionType getAttentionType(size_t     size_per_head,
         if (!causal_mask) {
             if (!with_swin_relative_position_bias
                 && (((sm == kSM_70 || sm == kSM_72) && size_per_head == 64)
-                    || ((sm == kSM_75 || sm == kSM_80 || sm == kSM_86)
+                    || ((sm == kSM_75 || sm == kSM_80 || sm == kSM_86 || sm == kSM_89)
                         && (size_per_head == 64 || size_per_head == 32)))) {
                 return remove_padding ? AttentionType::FUSED_MHA : AttentionType::FUSED_PADDED_MHA;
             }
-            else if (with_swin_relative_position_bias && (sm == kSM_75 || sm == kSM_80 || sm == kSM_86)
+            else if (with_swin_relative_position_bias && (sm == kSM_75 || sm == kSM_80 || sm == kSM_86 || sm == kSM_89)
                      && max_seq_len <= 256 && size_per_head == 32) {
                 return remove_padding ? AttentionType::FUSED_MHA : AttentionType::FUSED_PADDED_MHA;
             }
@@ -83,7 +83,7 @@ AttentionType getAttentionTypeINT8(
     size_t size_per_head, const int sm, const bool remove_padding, const int max_seq_len, const int int8_mode)
 {
     if ((int8_mode == 1 || int8_mode == 2)
-        && (((sm == kSM_80 || sm == kSM_86) && (size_per_head == 64 || size_per_head == 32) && max_seq_len <= 512)
+        && (((sm == kSM_80 || sm == kSM_86 || sm == kSM_89) && (size_per_head == 64 || size_per_head == 32) && max_seq_len <= 512)
             || (sm == kSM_75
                 && ((size_per_head == 64 && max_seq_len <= 384) || (size_per_head == 32 && max_seq_len <= 512))))) {
         return remove_padding ? AttentionType::FUSED_MHA : AttentionType::FUSED_PADDED_MHA;

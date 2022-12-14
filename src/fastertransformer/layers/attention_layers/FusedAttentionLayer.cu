@@ -238,8 +238,8 @@ FusedAttentionLayer<T>::FusedAttentionLayer(size_t           max_batch_size,
     sparse_(sparse)
 {
     FT_LOG_DEBUG(__PRETTY_FUNCTION__);
-    if (((sm_ == kSM_70 || sm_ == kSM_86 || sm_ == kSM_80 || sm_ == kSM_75 || sm_ == kSM_72) && size_per_head_ == 64)
-        || ((sm_ == kSM_86 || sm_ == kSM_80 || sm_ == kSM_75) && size_per_head_ == 32)) {
+    if (((sm_ == kSM_89 || sm_ == kSM_70 || sm_ == kSM_86 || sm_ == kSM_80 || sm_ == kSM_75 || sm_ == kSM_72) && size_per_head_ == 64)
+        || ((sm_ == kSM_89 || sm_ == kSM_86 || sm_ == kSM_80 || sm_ == kSM_75) && size_per_head_ == 32)) {
         dispatcher_fp16.reset(new FusedMHARunnerFP16v2(head_num_, size_per_head_, sm_, q_scaling_));
     }
     else {
