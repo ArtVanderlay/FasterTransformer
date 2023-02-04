@@ -147,7 +147,7 @@ void WindowAttention<T>::forward(TensorMap*                output_tensors,
     int size_per_head = dim / num_head;
     int trt_S         = 1024;
     // we should decide whether to use trt fmha based on window_size_ * window_size_
-    if ((sm == 75 || sm == 80 || sm == 86) && size_per_head == 32 && window_size_ * window_size_ <= TRT_MAX_LEN
+    if ((sm == 75 || sm == 80 || sm == 86 || sm == 89) && size_per_head == 32 && window_size_ * window_size_ <= TRT_MAX_LEN
         && std::is_same<T, half>::value) {
         trt_S    = trt_getS(window_len_in_use);
         use_trt_ = true;
