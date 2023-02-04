@@ -207,7 +207,7 @@ public:
                 || interface->mHeadSize == 160 || interface->mHeadSize == 256);
         }
         else {
-            return (sm == kSM_75 || sm == kSM_80 || sm == kSM_86) &&
+            return (sm == kSM_75 || sm == kSM_80 || sm == kSM_86 || sm == kSM_89) &&
                 (interface->mHeadSize == 32 || interface->mHeadSize == 64);
         }
     }
@@ -464,7 +464,7 @@ public:
     mhaImpl(FusedMHARunnerInt8v2* interface):
         interface(interface), sm(interface->mSm), xmmaKernel(getXMMAKernelsV2(DATA_TYPE_INT8, sm))
     {
-        assert((sm == kSM_72 || sm == kSM_75 || sm == kSM_80 || sm == kSM_86) && "Unsupported architecture");
+        assert((sm == kSM_72 || sm == kSM_75 || sm == kSM_80 || sm == kSM_86 || sm == kSM_89) && "Unsupported architecture");
         params.clear();
     }
 
@@ -630,7 +630,7 @@ public:
     int getSFromMaxSeqLen(const int max_seq_len, const bool withRelativePositionBias)
     {
         int S = 1024;
-        if (sm == 75 || sm == 80 || sm == 86) {
+        if (sm == 75 || sm == 80 || sm == 86 || sm == 89) {
             if (withRelativePositionBias) {
                 if (max_seq_len <= 64) {
                     S = 64;
